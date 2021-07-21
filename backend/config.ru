@@ -8,3 +8,5 @@ use Rack::Cors do
         resource '/*', headers: :any, methods: [:get, :post, :patch, :put, :delete]  
     end
 end
+
+run Application.new
