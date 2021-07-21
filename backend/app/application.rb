@@ -26,7 +26,7 @@ class Application
         end
     end
     
-    
+
     # hash = JSON.parse(req.body.read) => {"name" => "NAME", "user_id" => 1}
     # CLASSNAME.create(hash)
     
@@ -40,5 +40,5 @@ class Application
         # check if a user exists with that username
         # what do I want to send back in response
     
-    #USER LOGIN STORY
+    # USER LOGIN STORY
         #
