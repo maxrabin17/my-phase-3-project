@@ -27,6 +27,7 @@ const Signup = () => {
         fetch("http://localhost:9292/users", config)
             .then(res => res.json())
             .then(data => console.log(data))
+            .catch(error => console.log(error))
     }
 
 
@@ -38,7 +39,8 @@ const Signup = () => {
             username: "",
             password: ""
         })
-        alert("Account created head to Login link, and Login to continue!")
+        e.target.reset()
+        // alert("Account created head to Login link, and Login to continue!")
     }
 
     const handleChange = (e) => {

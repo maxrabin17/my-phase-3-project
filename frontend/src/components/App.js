@@ -1,11 +1,34 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import '../App.css'
 import Login from './Login'
 import Signup from './Signup'
+import Contacts from './Contacts'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-const App = () => {
+const App = (props) => {
+
+    const [users, setUsers] = useState({})
+    const [contacts, setContacts] = useState([])
+
+    const fetchUsers = () => {
+        fetch("http://localhost:9292/users")
+            .then(res => res.json())
+            .then(data => setUsers(data))
+            // .then(data => console.log(data))
+    }
+    
+    const fetchContacts = () => {
+        fetch(`https://localhost:9292/contacts`)
+        .then(res => res.json())
+        .then(data => setContacts(data))
+    }
+
+    useEffect(() => {
+        fetchUsers()
+        fetchContacts()
+    }, [])
+
     return (
         <div>
             <Navbar bg="primary" variant="dark" className = 'navbar'>
@@ -15,11 +38,14 @@ const App = () => {
             </Navbar>
             <Router>
                 <Switch>
-                    <Route path = "/login">
-                        <Login />
+                    <Route exact path = "/login">
+                        <Login users={ users }/>
                     </Route>
-                    <Route path="/">
+                    <Route exact path="/">
                         <Signup />
+                    </Route>
+                    <Route exact path='/users/:id'>
+                        <Contacts {...props} contacts={ contacts }/>
                     </Route>
                 </Switch>
             </Router>

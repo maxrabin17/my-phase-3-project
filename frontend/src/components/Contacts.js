@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import '../App.css'
+import { Form } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-const Contacts = () => {
-
-    const [contacts, setContacts] = useState([])
-    useEffect(() => {
-        fetch(`https://localhost:9292/contacts`)
-            .then(res => res.json())
-            .then(data => setContacts(data))
-    })
+const Contacts = (props) => {
+    
+    debugger;
+    // console.log(props.match.params.id)
 
     return (
         <div>
-            {contacts.map(contact => contact.name)}
+            <Form.Control size="sm" type="text" placeholder="Name" />
+            <Form.Control size="sm" type="text" placeholder="Phone Number" />
+            <Form.Control size="sm" type="text" placeholder="Address" />
+            {/* {contacts.map(contact => contact.name)} */}
         </div>
     )
 }

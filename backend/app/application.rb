@@ -16,6 +16,14 @@ class Application
                     user = User.create(data)
                     return [200, { "Content-Type" => "application/json" }, [{ :data => {:message => "Successfully Signed Up", :user => user}}.to_json]]
                 end
+                # USER AUTHENTICATION COME BACK TO
+            elsif req.path.match(/users/)
+                return [200, { "Content-Type" => "application/json" }, [{ :data => User.all}.to_json]]
+            elsif req.path.match(/contacts/)
+                return [200, { "Content-Type" => "application/json" }, [{ :data => Contact.all}.to_json]]
+            #         # return [200, { "Content-Type" => "application/json" }, [{ :message => "User does not exist"}]]
+            #         resp.write "User Does Not Exist"
+            #     end
                 # return [200, { "Content-Type" => "application/json" }, [ {data: User.create}.to_json ]]
             # elsif req.path.match(/contacts/)
             #     return [200, { "Content-Type" => "application/json" }, [ {data: Contact.all}.to_json ]]

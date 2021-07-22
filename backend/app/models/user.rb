@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
             contact.name
         end
     end
+
+    def get_user_id
+        self.id
+    end
 end
