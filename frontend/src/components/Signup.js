@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Login from './Login'
-import ReactDOM from 'react-dom';
 import '../App.css'
 import { Form, Button } from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+// import Login from './Login'
+// import ReactDOM from 'react-dom';
 
 
 const Signup = () => {
@@ -14,7 +14,6 @@ const Signup = () => {
         password: ""
     })
 
-    
     const fetchForm = (form) => {
         let config = {
             method: "POST",
@@ -29,8 +28,6 @@ const Signup = () => {
             .then(data => console.log(data))
             .catch(error => console.log(error))
     }
-
-
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -51,7 +48,8 @@ const Signup = () => {
     };
 
     return (
-        <div className = "sign-up-form">
+        <div className="sign-up-form">
+            <h1>Sign up!</h1>
             <Form onSubmit={handleClick}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Username</Form.Label>

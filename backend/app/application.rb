@@ -8,7 +8,6 @@ class Application
                 return [200, { "Content-Type" => "application/json" }, [{ :message => "test response!" }.to_json]]
             elsif req.path.match(/users/) && req.post?
                 data = JSON.parse(req.body.read)
-                # binding.pry
                 userExists = User.find_by(username: data["username"])
                 if userExists
                     return [200, { "Content-Type" => "application/json" }, [{ :error => "User with username: #{userExists.username} already exists" }.to_json]]
@@ -21,9 +20,11 @@ class Application
                 return [200, { "Content-Type" => "application/json" }, [{ :data => User.all}.to_json]]
             elsif req.path.match(/contacts/)
                 return [200, { "Content-Type" => "application/json" }, [{ :data => Contact.all}.to_json]]
-            #         # return [200, { "Content-Type" => "application/json" }, [{ :message => "User does not exist"}]]
-            #         resp.write "User Does Not Exist"
-            #     end
+            #         
+            #  elsif req.path.match(/contacts/)
+            #      return [200, { "Content-Type" => "application/json" }, [{ :message => "User does not exist"}]]
+            #    resp.write "User Does Not Exist"
+            #   end
                 # return [200, { "Content-Type" => "application/json" }, [ {data: User.create}.to_json ]]
             # elsif req.path.match(/contacts/)
             #     return [200, { "Content-Type" => "application/json" }, [ {data: Contact.all}.to_json ]]

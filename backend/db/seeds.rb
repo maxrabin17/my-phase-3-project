@@ -15,9 +15,9 @@ puts "Seeding Categories..."
 # User.create(username: "JimmyChoo", password: "Coding123!")
 # User.create(username: "MikeySlice", password: "Coding123!")
 
-# 5.times do
-#     Contact.create(name: Faker::Name.name, phone_number: Faker::PhoneNumber.cell_phone, address: Faker::Address.full_address, user_id: rand(1..5), is_favorite: rand(2) == 1)
-# end
+5.times do
+    Contact.create(name: Faker::Name.name, phone_number: Faker::PhoneNumber.cell_phone, address: Faker::Address.full_address, user_id: 1, is_favorite: rand(2) == 1)
+end
 
 # Group.create(category: "Family")
 # Group.create(category: "Friends")

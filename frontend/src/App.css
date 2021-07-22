@@ -18,3 +18,14 @@
 .navbar{
     padding-right: 500px;
 }
+
+.contact-form{
+    height: 100%;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 15px;
+    margin-top: 5%;
+    text-align: center;
+}
+

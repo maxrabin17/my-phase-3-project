@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
-// import { createBrowserHistory } from "history"
 import { useHistory } from "react-router-dom";
-import { Link } from 'react-router-dom'
-import Contacts from './Contacts'
 import '../App.css'
 import { Form, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+// import Contacts from './Contacts'
 
 const Login = ({users}) => {
 
@@ -15,8 +13,6 @@ const Login = ({users}) => {
         username: "",
         password: ""
     })
-
-    // const [users, setUsers] = useState({})
 
     const compareFetchToForm = (e) => {
         e.preventDefault()
@@ -32,7 +28,8 @@ const Login = ({users}) => {
     };
 
     return (
-        <div className = "sign-up-form">
+        <div className="sign-up-form">
+            <h1>Log in!</h1>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Username</Form.Label>

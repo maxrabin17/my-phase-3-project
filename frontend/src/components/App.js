@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Navbar, Nav, Container } from 'react-bootstrap'
+import { Navbar, Container } from 'react-bootstrap'
 import '../App.css'
 import Login from './Login'
 import Signup from './Signup'
@@ -20,8 +20,8 @@ const App = (props) => {
     
     const fetchContacts = () => {
         fetch(`https://localhost:9292/contacts`)
-        .then(res => res.json())
-        .then(data => setContacts(data))
+            .then(res => res.json())
+            .then(data => setContacts(data))
     }
 
     useEffect(() => {
