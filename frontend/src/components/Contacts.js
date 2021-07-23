@@ -5,7 +5,7 @@ import '../App.css'
 import { Form, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-const Contacts = ({users, contacts}) => {
+const Contacts = ({user, contacts, userName}) => {
     
     // debugger;
     // const params = useParams();
@@ -13,20 +13,61 @@ const Contacts = ({users, contacts}) => {
     // let currentUser = users.data.find((user) => parseInt(params.id) === user.id)
     // let currentContacts = contacts.data.filter((contact) => contact.user_id === currentUser.id)
     // console.log(currentContacts)
+    const [form, setForm] = useState({
+        name: "",
+        phone_number: "",
+        address: ""
+    })
+
+    const fetchForm = (form) => {
+        let config = {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+                "Accepts": "application/json"
+            },
+            body: JSON.stringify(form)
+        }
+        fetch(`http://localhost:9292/contacts/search?q=${userName}`, config)
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        fetchForm(form)
+        // setForm({
+        //     name: "",
+        //     phone_number: "",
+        //     address: ""
+        // })
+        // e.target.reset()
+    }
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        });
+    };
 
     return (
         <div className="contact-form">
-            <h1>Contact Information</h1>
-            <Form.Control size="sm" type="text" placeholder="Name" />
-            <br />
-            <Form.Control size="sm" type="text" placeholder="Phone Number" />
-            <br />
-            <Form.Control size="sm" type="text" placeholder="Address" />
-            <br />
-            <Button variant="primary">Create Contact</Button>
-            <br />
+            <form onSubmit={handleSubmit}>
+                <h1>Contact Information</h1>
+                <Form.Control size="sm" type="text" placeholder="Name" name="name" onChange={ handleChange }/>
+                <br />
+                <Form.Control size="sm" type="text" placeholder="Phone Number" name="phone_number" onChange={ handleChange }/>
+                <br />
+                <Form.Control size="sm" type="text" placeholder="Address" name="address" onChange={ handleChange } />
+                <br />
+                <Button variant="primary">Create Contact</Button>
+                <br />
+                {/* {user.username} */}
+            </form>
             {contacts.map(contact => contact.name)}
-            <ContactCard users={users} contacts={ contacts }/>
+            <ContactCard users={user} contacts={ contacts }/>
         </div>
     )
 }

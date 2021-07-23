@@ -37,8 +37,8 @@ const Signup = () => {
             password: ""
         })
         e.target.reset()
-        // alert("Account created head to Login link, and Login to continue!")
     }
+    // alert("Account created head to Login link, and Login to continue!")
 
     const handleChange = (e) => {
         setForm({

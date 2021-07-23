@@ -5,7 +5,7 @@ import { Form, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 // import Contacts from './Contacts'
 
-const Login = ({users, setUserName, userName}) => {
+const Login = ({user, setUserName, userName}) => {
 
     const history = useHistory()
 
@@ -18,16 +18,6 @@ const Login = ({users, setUserName, userName}) => {
         e.preventDefault()
         setUserName(form.username)
         // let user = users.data.find((a) => a.username == form.username)
-        // history.push(`/users/search?q=${userName}`)
-    }
-    // const compareFetchToForm = (e) => {
-    //     e.preventDefault()
-    //     let user = users.data.find((a) => a.username == form.username)
-    //     setUserId(user.id)
-    //     history.push(`/users/search?q=${user.id}`)
-    // }
-
-    const handleClick = () => {
         history.push(`/users/search?q=${userName}`)
     }
 
@@ -50,7 +40,7 @@ const Login = ({users, setUserName, userName}) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" onChange={ handleChange } name = "password"/>
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={handleClick}>
+                <Button variant="primary" type="submit">
                     Login
                 </Button>
             </Form>

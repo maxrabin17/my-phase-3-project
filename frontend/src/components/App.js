@@ -17,8 +17,8 @@ const App = () => {
         fetch(`http://localhost:9292/users/search?q=${userName}`)
             .then(res => res.json())
             .then(data => {
-                setUser(data.data.user)
-                setContacts(data.data.userContacts)
+                setUser(data.user)
+                setContacts(data.userContacts)
                 setLoading(false)
             })
             // .then(data => console.log(data))
@@ -72,7 +72,7 @@ const App = () => {
                         <Signup />
                     </Route>
                     <Route exact path='/users/:id'>
-                        <Contacts contacts={contacts} user={user} setUserName={setUserName}/>
+                        <Contacts contacts={contacts} user={user} setUserName={setUserName} userName={userName}/>
                     </Route>
                 </Switch>
             </Router>
