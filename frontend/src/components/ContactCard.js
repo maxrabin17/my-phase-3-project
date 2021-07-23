@@ -4,20 +4,16 @@ import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
-const ContactCard = () => {
+const ContactCard = ({contact, user}) => {
     return (
         <div>
             <Card border="dark" style={{ width: '18rem' }} className = "contact-card">
-                <Card.Header>Header</Card.Header>
+                <Card.Header>Contact</Card.Header>
                 <Card.Body>
-                    <Card.Title>Dark Card Title</Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk
-                        of the card's content.               
-                            <li>Hello</li>
-                            <li>Hello</li>
-                            <li>Hello</li>
-                            <li>Hello</li>
+                    <Card.Title>{contact.name}</Card.Title>
+                    <Card.Text>          
+                        <li>Phone: {contact.phone_number}</li>
+                        <li>Address: {contact.address}</li>
                     </Card.Text>
                 </Card.Body>
             </Card>

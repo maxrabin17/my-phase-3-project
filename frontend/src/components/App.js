@@ -58,7 +58,7 @@ const App = () => {
 
     return (
         <div>
-            <Navbar bg="primary" variant="dark" className = 'navbar'>
+            <Navbar bg="dark" variant="dark" className = 'navbar'>
                 <Container>
                 <Navbar.Brand href="/">Contact Book App</Navbar.Brand>
                 </Container>

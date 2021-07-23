@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import ContactCard from './ContactCard'
-import { useParams } from 'react-router-dom'
 import '../App.css'
 import { Form, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -13,6 +12,7 @@ const Contacts = ({user, contacts, userName}) => {
     // let currentUser = users.data.find((user) => parseInt(params.id) === user.id)
     // let currentContacts = contacts.data.filter((contact) => contact.user_id === currentUser.id)
     // console.log(currentContacts)
+
     const [form, setForm] = useState({
         name: "",
         phone_number: "",
@@ -28,7 +28,7 @@ const Contacts = ({user, contacts, userName}) => {
             },
             body: JSON.stringify(form)
         }
-        fetch(`http://localhost:9292/contacts/search?q=${userName}`, config)
+        fetch(`http://localhost:9292/contacts`, config)
             .then(res => res.json())
             .then(data => console.log(data))
             .catch(error => console.log(error))
@@ -54,7 +54,7 @@ const Contacts = ({user, contacts, userName}) => {
 
     return (
         <div className="contact-form">
-            <form onSubmit={handleSubmit}>
+            <form>
                 <h1>{`Welcome ${userName}!`}</h1>
                 <h2>Create Contact</h2>
                 <Form.Control size="sm" type="text" placeholder="Name" name="name" onChange={ handleChange }/>
@@ -63,12 +63,12 @@ const Contacts = ({user, contacts, userName}) => {
                 <br />
                 <Form.Control size="sm" type="text" placeholder="Address" name="address" onChange={ handleChange } />
                 <br />
-                <Button variant="primary">Create Contact</Button>
+                <Button variant="primary" onClick={handleSubmit}>Create Contact</Button>
                 <br />
-                {/* {user.username} */}
             </form>
-            {contacts.map(contact => contact.name)}
-            <ContactCard users={user} contacts={ contacts }/>
+            <div className="contact-card">
+                {contacts.map(contact => <ContactCard contact={contact} user={user}/>)}
+            </div>
         </div>
     )
 }
