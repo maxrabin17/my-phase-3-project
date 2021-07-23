@@ -15,19 +15,24 @@ class Application
                     user = User.create(data)
                     return [200, { "Content-Type" => "application/json" }, [{ :data => {:message => "Successfully Signed Up", :user => user}}.to_json]]
                 end
-                # USER AUTHENTICATION COME BACK TO
             elsif req.path.match(/users/)
-                return [200, { "Content-Type" => "application/json" }, [{ :data => User.all}.to_json]]
+                username = req.params["q"]
+                user = User.find_by(:username => username)
+                # binding.pry
+                return [200, { "Content-Type" => "application/json" }, [{ :data => {:user => user, :userContacts => user.contacts}}.to_json]]
+
+                # const fetchUsers = () => {
+                #     fetch(`http://localhost:9292/users/search?q=${userName}`)
+                #         .then(res => res.json())
+                #         .then(data => {
+                #             setUsers(data)
+                #             setLoading(false)
+                #         })
+                #         // .then(data => console.log(data))
+                # }
+
             elsif req.path.match(/contacts/)
                 return [200, { "Content-Type" => "application/json" }, [{ :data => Contact.all}.to_json]]
-            #         
-            #  elsif req.path.match(/contacts/)
-            #      return [200, { "Content-Type" => "application/json" }, [{ :message => "User does not exist"}]]
-            #    resp.write "User Does Not Exist"
-            #   end
-                # return [200, { "Content-Type" => "application/json" }, [ {data: User.create}.to_json ]]
-            # elsif req.path.match(/contacts/)
-            #     return [200, { "Content-Type" => "application/json" }, [ {data: Contact.all}.to_json ]]
             else
                 resp.write "Path Not Found"
             end
@@ -35,10 +40,19 @@ class Application
         end
     end
     
-
+    
     # hash = JSON.parse(req.body.read) => {"name" => "NAME", "user_id" => 1}
     # CLASSNAME.create(hash)
     
+    #         
+    # USER AUTHENTICATION COME BACK TO
+    #  elsif req.path.match(/contacts/)
+    #      return [200, { "Content-Type" => "application/json" }, [{ :message => "User does not exist"}]]
+    #    resp.write "User Does Not Exist"
+    #   end
+        # return [200, { "Content-Type" => "application/json" }, [ {data: User.create}.to_json ]]
+    # elsif req.path.match(/contacts/)
+    #     return [200, { "Content-Type" => "application/json" }, [ {data: Contact.all}.to_json ]]
     
     # elsif req.path.match(/users/)  
     #     return [200, { "Content-Type" => "application/json" }, [ {data: User.all, data2: Contact.all}.to_json ]]

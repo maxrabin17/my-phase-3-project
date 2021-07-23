@@ -29,3 +29,12 @@
     text-align: center;
 }
 
+.contact-card{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    /* padding: 15px; */
+    margin-top:  5%;
+    text-align: center;
+}
+

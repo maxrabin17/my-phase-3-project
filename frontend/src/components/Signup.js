@@ -29,7 +29,7 @@ const Signup = () => {
             .catch(error => console.log(error))
     }
 
-    const handleClick = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         fetchForm(form)
         setForm({
@@ -50,7 +50,7 @@ const Signup = () => {
     return (
         <div className="sign-up-form">
             <h1>Sign up!</h1>
-            <Form onSubmit={handleClick}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="text" placeholder="Create Username" onChange={ handleChange } name="username" />

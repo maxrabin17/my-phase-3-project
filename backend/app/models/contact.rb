@@ -6,4 +6,8 @@ class Contact < ActiveRecord::Base
     def users_name
         self.user.username
     end
+
+    def self.contacts_by_user_id
+        
+    end
 end
