@@ -71,7 +71,7 @@ const App = () => {
                     <Route exact path="/">
                         <Signup />
                     </Route>
-                    <Route exact path='/users/:id'>
+                    <Route path='/contacts'>
                         <Contacts contacts={contacts} user={user} setUserName={setUserName} userName={userName}/>
                     </Route>
                 </Switch>

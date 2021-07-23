@@ -55,7 +55,8 @@ const Contacts = ({user, contacts, userName}) => {
     return (
         <div className="contact-form">
             <form onSubmit={handleSubmit}>
-                <h1>Contact Information</h1>
+                <h1>{`Welcome ${userName}!`}</h1>
+                <h2>Create Contact</h2>
                 <Form.Control size="sm" type="text" placeholder="Name" name="name" onChange={ handleChange }/>
                 <br />
                 <Form.Control size="sm" type="text" placeholder="Phone Number" name="phone_number" onChange={ handleChange }/>

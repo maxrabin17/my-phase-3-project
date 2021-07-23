@@ -18,7 +18,7 @@ const Login = ({user, setUserName, userName}) => {
         e.preventDefault()
         setUserName(form.username)
         // let user = users.data.find((a) => a.username == form.username)
-        history.push(`/users/search?q=${userName}`)
+        history.push(`/contacts`)
     }
 
     const handleChange = (e) => {
