@@ -37,8 +37,8 @@ const Signup = () => {
             password: ""
         })
         e.target.reset()
+        alert("Account created head to Login link, and Login to continue!")
     }
-    // alert("Account created head to Login link, and Login to continue!")
 
     const handleChange = (e) => {
         setForm({
@@ -59,7 +59,7 @@ const Signup = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Create Password" onChange={ handleChange } name="password"/>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Sign Up
                 </Button>
                     <h4 className = 'account'>Already have an account?</h4>

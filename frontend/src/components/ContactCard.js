@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -14,6 +14,10 @@ const ContactCard = ({contact, user}) => {
                     <Card.Text>          
                         <li>Phone: {contact.phone_number}</li>
                         <li>Address: {contact.address}</li>
+                        <br />
+                        <Button variant="outline-danger">
+                            Delete Contact
+                        </Button>
                     </Card.Text>
                 </Card.Body>
             </Card>

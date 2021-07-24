@@ -40,7 +40,7 @@ const Login = ({user, setUserName, userName}) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" onChange={ handleChange } name = "password"/>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Login
                 </Button>
             </Form>

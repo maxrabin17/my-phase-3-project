@@ -53,8 +53,9 @@ const Contacts = ({user, contacts, userName}) => {
     };
 
     return (
+        <>
         <div className="contact-form">
-            <form>
+            <Form>
                 <h1>{`Welcome ${userName}!`}</h1>
                 <h2>Create Contact</h2>
                 <Form.Control size="sm" type="text" placeholder="Name" name="name" onChange={ handleChange }/>
@@ -63,13 +64,20 @@ const Contacts = ({user, contacts, userName}) => {
                 <br />
                 <Form.Control size="sm" type="text" placeholder="Address" name="address" onChange={ handleChange } />
                 <br />
-                <Button variant="primary" onClick={handleSubmit}>Create Contact</Button>
+                <Button variant="success" onClick={handleSubmit}>Create Contact</Button>
                 <br />
-            </form>
+            </Form>
+            </div>
             <div className="contact-card">
                 {contacts.map(contact => <ContactCard contact={contact} user={user}/>)}
             </div>
-        </div>
+            <div>
+
+
+
+                
+            </div>
+        </>
     )
 }
 
