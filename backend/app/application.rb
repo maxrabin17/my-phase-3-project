@@ -16,14 +16,28 @@ class Application
 
         elsif req.path.match(/users/) && req.post?
             data = JSON.parse(req.body.read)
-                userExists = User.find_by(username: data["username"])
-                # binding.pry
-                if userExists
-                    return [200, { "Content-Type" => "application/json" }, [{ :error => "User with username: #{userExists.username} already exists" }.to_json]]
-                else    
-                    user = User.create(data)
-                    return [200, { "Content-Type" => "application/json" }, [{ :data => {:message => "Successfully Signed Up", :user => user}}.to_json]]
-                end
+            userExists = User.find_by(username: data["username"])
+            # binding.pry
+            if userExists
+                return [200, { "Content-Type" => "application/json" }, [{ :error => "User with username: #{userExists.username} already exists" }.to_json]]
+            else    
+                user = User.create(data)
+                return [200, { "Content-Type" => "application/json" }, [{ :data => {:message => "Successfully Signed Up", :user => user}}.to_json]]
+            end
+
+        elsif req.path.match(/contacts/) && req.post?
+            # username = req.params["q"]
+            # currentUser = User.find_by(:username => username)
+            data = JSON.parse(req.body.read)
+            contactExists = Contact.find_by(name: data["name"])
+            # binding.pry
+            if contactExists
+                return [200, { "Content-Type" => "application/json" }, [{ :error => "Contact with name: #{contactExists.name} already exists" }.to_json]]
+            else    
+                contact = Contact.create(data)
+                res_contact = {id: contact.id, name: contact.name, phone_number: contact.phone_number, address: contact.address, user_id: contact.user_id}
+                return [200, { "Content-Type" => "application/json" }, [{:message => "Successfully Signed Up", :contact => res_contact}.to_json]]
+            end
             
             elsif req.path.match(/users/)
                 username = req.params["q"]
@@ -31,19 +45,6 @@ class Application
                 # binding.pry
                 return [200, { "Content-Type" => "application/json" }, [{:user => user, :userContacts => user.contacts}.to_json]]
                 
-            elsif req.path.match(/contacts/) && req.post?
-                # username = req.params["q"]
-                # currentUser = User.find_by(:username => username)
-                data = JSON.parse(req.body.read)
-                contactExists = Contact.find_by(name: data["name"])
-                binding.pry
-                if contactExists
-                    return [200, { "Content-Type" => "application/json" }, [{ :error => "Contact with name: #{contactExists.name} already exists" }.to_json]]
-                else    
-                    contact = Contact.create(data)
-                    # contact.update(user_id: currentUser.id)
-                    return [200, { "Content-Type" => "application/json" }, [{:message => "Successfully Signed Up", :contact => contact}.to_json]]
-                end
 
             else
                 resp.write "Path Not Found"

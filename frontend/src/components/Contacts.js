@@ -9,7 +9,8 @@ const Contacts = ({user, contacts, setContacts, userName}) => {
     const [form, setForm] = useState({
         name: "",
         phone_number: "",
-        address: ""
+        address: "",
+        userId: user.id
     })
 
     const fetchForm = (form) => {
@@ -23,13 +24,19 @@ const Contacts = ({user, contacts, setContacts, userName}) => {
         }
         fetch(`http://localhost:9292/contacts`, config)
             .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(error => console.log(error))
+            .then(data => setContacts([...contacts, data.contact]))
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         fetchForm(form)
+        setForm({
+            name: "",
+            phone_number: "",
+            address: "",
+        })
+        e.target.reset()
+        alert("Contact created!")
     }
 
     const handleChange = (e) => {
@@ -43,7 +50,7 @@ const Contacts = ({user, contacts, setContacts, userName}) => {
         <>
         <div className="contact-form">
             <Form>
-                <h1>{`Welcome ${userName}!`}</h1>
+                <h1>{`Welcome ${user.username}!`}</h1>
                 <h2>Create Contact</h2>
                 <Form.Control size="sm" type="text" placeholder="Name" name="name" onChange={ handleChange }/>
                 <br />
@@ -51,7 +58,7 @@ const Contacts = ({user, contacts, setContacts, userName}) => {
                 <br />
                 <Form.Control size="sm" type="text" placeholder="Address" name="address" onChange={ handleChange } />
                 <br />
-                <Button variant="outline-success" onClick={handleSubmit}>Create Contact</Button>
+                <Button variant="outline-success"  onClick={handleSubmit}>Create Contact</Button>
                 <br />
             </Form>
             </div>
