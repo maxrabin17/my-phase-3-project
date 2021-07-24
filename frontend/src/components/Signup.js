@@ -3,9 +3,6 @@ import '../App.css'
 import { Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import Login from './Login'
-// import ReactDOM from 'react-dom';
-
 
 const Signup = () => {
     
@@ -59,11 +56,11 @@ const Signup = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Create Password" onChange={ handleChange } name="password"/>
                 </Form.Group>
-                <Button variant="success" type="submit">
+                <Button variant="outline-success" type="submit">
                     Sign Up
                 </Button>
                     <h4 className = 'account'>Already have an account?</h4>
-                <Link to='/login'>Login</Link>
+                <Link to='/login' style={{ textDecoration: 'none' }}>Login</Link>
             </Form>
         </div>
     )

@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import '../App.css'
 import { Form, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import Contacts from './Contacts'
 
 const Login = ({user, setUserName, userName}) => {
 
@@ -17,7 +16,6 @@ const Login = ({user, setUserName, userName}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setUserName(form.username)
-        // let user = users.data.find((a) => a.username == form.username)
         history.push(`/contacts`)
     }
 
@@ -40,7 +38,7 @@ const Login = ({user, setUserName, userName}) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" onChange={ handleChange } name = "password"/>
                 </Form.Group>
-                <Button variant="success" type="submit">
+                <Button variant="outline-success" type="submit">
                     Login
                 </Button>
             </Form>

@@ -4,11 +4,18 @@ class Application
     def call(env)
         resp = Rack::Response.new
         req = Rack::Request.new(env)
-            if req.path.match(/test/)
-                return [200, { "Content-Type" => "application/json" }, [{ :message => "test response!" }.to_json]]
-            
-            elsif req.path.match(/users/) && req.post?
-                data = JSON.parse(req.body.read)
+        if req.path.match(/test/)
+            return [200, { "Content-Type" => "application/json" }, [{ :message => "test response!" }.to_json]]
+    
+        elsif req.delete?
+            # binding.pry
+        
+            id = req.path.split("/contacts/").last
+            Contact.find(id).delete
+            return [200, { "Content-Type" => "application/json" }, [{ :message => "Contact Deleted!" }.to_json]]
+
+        elsif req.path.match(/users/) && req.post?
+            data = JSON.parse(req.body.read)
                 userExists = User.find_by(username: data["username"])
                 # binding.pry
                 if userExists
@@ -23,7 +30,7 @@ class Application
                 user = User.find_by(:username => username)
                 # binding.pry
                 return [200, { "Content-Type" => "application/json" }, [{:user => user, :userContacts => user.contacts}.to_json]]
-            
+                
             elsif req.path.match(/contacts/) && req.post?
                 # username = req.params["q"]
                 # currentUser = User.find_by(:username => username)
@@ -35,12 +42,14 @@ class Application
                 else    
                     contact = Contact.create(data)
                     # contact.update(user_id: currentUser.id)
-                    return [200, { "Content-Type" => "application/json" }, [{ :data => {:message => "Successfully Signed Up", :contact => contact}}.to_json]]
+                    return [200, { "Content-Type" => "application/json" }, [{:message => "Successfully Signed Up", :contact => contact}.to_json]]
                 end
+
             else
                 resp.write "Path Not Found"
             end
             resp.finish
+
         end
     end
     

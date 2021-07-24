@@ -12,6 +12,7 @@ const App = () => {
     const [userName, setUserName] = useState("")
     const [user, setUser] = useState({})
     const [contacts, setContacts] = useState([])
+    // const [contactId, setContactId] = useState(0)
 
     const fetchUsers = () => {
         fetch(`http://localhost:9292/users/search?q=${userName}`)
@@ -24,28 +25,8 @@ const App = () => {
             // .then(data => console.log(data))
     }
 
-    // const fetchUsersContacts = () => {
-    //     fetch("http://localhost:9292/users")
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setUsers(data)
-    //             setLoading(false)
-    //         })
-    //         // .then(data => console.log(data))
-    // }
-    
-    // const fetchContacts = () => {
-    //     fetch(`http://localhost:9292/contacts`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setContacts(data)
-    //             setLoading(false)
-    //         })
-    // }
-
     useEffect(() => {
         fetchUsers()
-        // fetchContacts()
     }, [userName])
 
     if (loading) {
@@ -72,7 +53,7 @@ const App = () => {
                         <Signup />
                     </Route>
                     <Route path='/contacts'>
-                        <Contacts contacts={contacts} user={user} setUserName={setUserName} userName={userName}/>
+                        <Contacts contacts={contacts} setContacts={setContacts} user={user} setUserName={setUserName} userName={userName}/>
                     </Route>
                 </Switch>
             </Router>
