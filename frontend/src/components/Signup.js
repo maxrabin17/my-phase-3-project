@@ -23,7 +23,6 @@ const Signup = () => {
         fetch("http://localhost:9292/users", config)
             .then(res => res.json())
             .then(data => console.log(data))
-            .catch(error => console.log(error))
     }
 
     const handleSubmit = (e) => {

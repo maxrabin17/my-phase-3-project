@@ -17,20 +17,16 @@ class Application
         elsif req.path.match(/users/) && req.post?
             data = JSON.parse(req.body.read)
             userExists = User.find_by(username: data["username"])
-            # binding.pry
             if userExists
                 return [200, { "Content-Type" => "application/json" }, [{ :error => "User with username: #{userExists.username} already exists" }.to_json]]
             else    
                 user = User.create(data)
                 return [200, { "Content-Type" => "application/json" }, [{ :data => {:message => "Successfully Signed Up", :user => user}}.to_json]]
             end
-
+            
         elsif req.path.match(/contacts/) && req.post?
-            # username = req.params["q"]
-            # currentUser = User.find_by(:username => username)
             data = JSON.parse(req.body.read)
             contactExists = Contact.find_by(name: data["name"])
-            # binding.pry
             if contactExists
                 return [200, { "Content-Type" => "application/json" }, [{ :error => "Contact with name: #{contactExists.name} already exists" }.to_json]]
             else    
@@ -42,7 +38,6 @@ class Application
             elsif req.path.match(/users/)
                 username = req.params["q"]
                 user = User.find_by(:username => username)
-                # binding.pry
                 return [200, { "Content-Type" => "application/json" }, [{:user => user, :userContacts => user.contacts}.to_json]]
                 
 

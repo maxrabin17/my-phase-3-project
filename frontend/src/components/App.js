@@ -12,7 +12,6 @@ const App = () => {
     const [userName, setUserName] = useState("")
     const [user, setUser] = useState({})
     const [contacts, setContacts] = useState([])
-    // const [contactId, setContactId] = useState(0)
 
     const fetchUsers = () => {
         fetch(`http://localhost:9292/users/search?q=${userName}`)
@@ -22,7 +21,6 @@ const App = () => {
                 setContacts(data.userContacts)
                 setLoading(false)
             })
-            // .then(data => console.log(data))
     }
 
     useEffect(() => {

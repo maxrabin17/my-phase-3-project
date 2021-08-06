@@ -5,12 +5,12 @@ import { Form, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Contacts = ({user, contacts, setContacts, userName}) => {
-
+    
     const [form, setForm] = useState({
         name: "",
         phone_number: "",
         address: "",
-        userId: user.id
+        user_id: 0
     })
 
     const fetchForm = (form) => {
@@ -30,19 +30,13 @@ const Contacts = ({user, contacts, setContacts, userName}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         fetchForm(form)
-        setForm({
-            name: "",
-            phone_number: "",
-            address: "",
-        })
-        e.target.reset()
-        alert("Contact created!")
     }
-
+    
     const handleChange = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
+            ["user_id"]: user.id
         });
     };
 
@@ -50,7 +44,7 @@ const Contacts = ({user, contacts, setContacts, userName}) => {
         <>
         <div className="contact-form">
             <Form>
-                <h1>{`Welcome ${user.username}!`}</h1>
+                <h1>{`Welcome ${userName}!`}</h1>
                 <h2>Create Contact</h2>
                 <Form.Control size="sm" type="text" placeholder="Name" name="name" onChange={ handleChange }/>
                 <br />
@@ -63,7 +57,7 @@ const Contacts = ({user, contacts, setContacts, userName}) => {
             </Form>
             </div>
             <div className="contact-card">
-                {contacts.map(contact => <ContactCard key={contact.id} contacts={contacts} contact={contact} setContacts={setContacts}/>)}
+                {contacts.map(contact => <ContactCard contacts={contacts} contact={contact} setContacts={setContacts}/>)}
             </div>
             <div>
 
